@@ -1,4 +1,5 @@
 const express = require('express');
+const fs = require('fs');
 const app = express();
 
 app.use(express.json());
@@ -17,6 +18,13 @@ app.get('/users', (req, res) => {
 app.post('/users', (req, res) => {
   let newUser = req.body;
   users.push(newUser);
+  fs.writeFile('MOCK_DATA.json', JSON.stringify(users), (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('successfully added user');
+    }
+  });
   return res.send('User added');
 });
 
