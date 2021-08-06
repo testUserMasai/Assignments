@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 
+app.use(express.json());
+
 // Getting all users data
 let users = require('./MOCK_DATA.json');
 
@@ -13,8 +15,8 @@ app.get('/users', (req, res) => {
 });
 
 app.post('/users', (req, res) => {
-  let user = req.body;
-  users.push(user);
+  let newUser = req.body;
+  users.push(newUser);
   return res.send('User added');
 });
 
